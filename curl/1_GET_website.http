@@ -1,0 +1,6 @@
+# WebサイトのあるURLへのGETリクエスト
+GET https://www.oreilly.co.jp/books/9784873119038 HTTP/1.1
+
+# curl --request GET \
+#   --url https://www.oreilly.co.jp/books/9784873119038/ \
+#   --header 'user-agent: vscode-restclient'

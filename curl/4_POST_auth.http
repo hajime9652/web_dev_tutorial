@@ -1,0 +1,31 @@
+# 認証付きで、POSTリクエスト
+# 本当に、記事が公開されるよ。気をつけてね😇
+
+# Qiitaからアクセストークンを取得してね
+# https://qiita.com/settings/tokens/new
+POST https://qiita.com/api/v2/items HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer xxx
+
+{
+  "body": "# Example",
+  "coediting": false,
+  "private": false,
+  "tags": [
+    {
+      "name": "HTTP",
+      "versions": [
+        "0.0.1"
+      ]
+    }
+  ],
+  "title": "Real World HTTP",
+  "tweet": false
+}
+
+# curl --request POST \
+#   --url https://qiita.com/api/v2/items \
+#   --header 'authorization: Bearer xxx' \
+#   --header 'content-type: application/json' \
+#   --header 'user-agent: vscode-restclient' \
+#   --data '{"body": "# Example","coediting": false,"private": false,"tags": [{"name": "HTTP","versions": ["0.0.1"]}],"title": "Real World HTTP","tweet": false}'

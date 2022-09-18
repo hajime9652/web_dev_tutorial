@@ -1,0 +1,29 @@
+version: "3.6"
+services:
+
+  main-store:
+    image: neo4j:latest
+    volumes:
+      - app-db-data:/data/
+    env_file:
+      - .env
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+
+  backend:
+    volumes:
+      - ./app:/app
+    env_file:
+      - .env
+    build:
+      context: .
+    links:
+      - main-store
+    ports:
+      - "8888:8888"
+
+
+volumes:
+  app-db-data:
+

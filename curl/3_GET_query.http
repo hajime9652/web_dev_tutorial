@@ -1,0 +1,15 @@
+# APIへのGETリクエスト
+
+# 検索クエリ: 著者名で検索
+GET https://qiita.com/api/v2/items?query=qiita+user%3Awww_y118 HTTP/1.1
+
+# curl --request GET \
+#   --url 'https://qiita.com/api/v2/items?query=qiita%20user%3Awww_y118' \
+#   --header 'user-agent: vscode-restclient'
+
+# 検索クエリ: タイトルを検索
+# GET https://qiita.com/api/v2/items?page=1&per_page=20&query=qiita+title%3AReal+World+HTTP HTTP/1.1
+
+# curl --request GET \
+#   --url 'https://qiita.com/api/v2/items?page=1&per_page=20&query=qiita%20title%3AReal%20World%20HTTP' \
+#   --header 'user-agent: vscode-restclient'

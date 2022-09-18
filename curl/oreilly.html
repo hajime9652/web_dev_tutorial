@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>O'Reilly Japan - Real World HTTP 第2版</title>
+  <link rel="stylesheet" type="text/css" href="/assets/css/font-face.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/layout.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/layout-books.css">
+  <link rel="icon" type="image/png" href="https://www.oreilly.com/favicon.ico">
+
+  <meta name="format-detection" content="telephone=no">
+  <meta property="og:title" content="Real World HTTP 第2版" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://www.oreilly.co.jp/books/images/picture978-4-87311-903-8.gif" />
+  <meta property="og:image:secure_url" content="https://www.oreilly.co.jp/books/images/picture_large978-4-87311-903-8.jpeg" />
+  <meta property="og:url" content="https://www.oreilly.co.jp/books/9784873119038/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="O'Reilly Japan" />
+  <meta name="twitter:creator" content="oreilly_japan" />
+  <link href="http://www.oreilly.co.jp/sales/atom.xml" type="application/atom+xml" rel="alternate" title="Sales Information" />
+  <meta property="og:description" content="本書はHTTPに関する技術的な内容を一冊にまとめることを目的とした書籍です。HTTPが進化する道筋をたどりながら、ブラウザが内部で行っていること、サーバーとのやりとりの内容などについて、プロトコルの実例や実際の使用例などを交えながら紹介しています。GoやJavaScriptによるコード例によって、単純なHTTPアクセス、フォームの送信、キャッシュやクッキーのコントロール、Keep-Alive、SSL/TLS、プロトコルアップグレード、サーバープッシュ、Server-Sent Events、WebSocketなどの動作を理解します。
+第2版ではHTTP/3の規格化など、初版の発行後に起きたウェブ技術への変化にともなう内容のアップデートに加え、DNSやCDN、またウェブアプリケーションの基礎など、ウェブ技術を扱うときに知っておきたい周辺技術に関する新章も追加しました。本書は、幅広く複雑なHTTPとウェブ技術に関する知識を整理するのに役立ち、また、さまざまな新しい技術をキャッチアップする一助となるでしょう。" />
+  <link rel="canonical" href="https://www.oreilly.co.jp//books/9784873119038/" />
+  <link rel="amphtml" href="https://www.oreilly.co.jp//books/9784873119038/mobile.html">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QE72H4KS"></script>
+  <script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-M7QE72H4KS');
+  </script>
+  <style>
+.collapsible {
+  background-color: white;
+  border: 0;
+  border-bottom: 1px solid rgb(246, 246, 246);
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  outline: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.5em;
+}
+
+.collapsible:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 1.0rem;
+  margin-left: 5px;
+  float: right;
+}
+
+.collapsible-active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+.collapsible:hover {
+  box-shadow: 2px0 4px 8px rgb(0, 0, 0, .1);
+  transition: box-shadow .2s;
+  cursor: pointer;
+}
+
+.collapsible + section {
+  padding: 0;
+  margin-bottom: 30px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.05s ease-out;
+}
+  </style>
+</head>
+
+<body>
+  <div id="skipToMain" class="nav__SkipToMain"><a href="#maincontent">Skip to main content</a></div>
+
+  <header role="banner" class="nav__GlboalHeader">
+    <div class="pageWidth">
+      <nav role="navigation" aria-label="site sections" class="nav__GlobalNav">
+        <a aria-current="page" title="Go to home page" class="nav__Logo" href="/"><img src="/assets/images/logo_oreilly_japan.svg" alt="O'Reilly logo"></a>
+        <div class="nav__NavItems" id="nav__NavItems">
+          <div class="nav__NavGroup">
+            <a class="nav__Link" href="/blog/">Blog</a>
+            <a class="nav__Link active" href="/books/">Books</a>
+            <a class="nav__Link" href="/ebook/">Ebooks</a>
+            <a class="nav__Link" href="/online-learning/">Learning platform</a>
+            <a class="nav__Link" href="/order/">Order</a>
+            <a class="nav__Link" href="/company/">About</a>
+          </div>
+          <div class="nav__CTA">
+            <a href="/app/cart" class="nav__Cart">Cart</a>
+          </div>
+        </div>
+        <button id="nav__MobileBtn" aria-expanded="false" aria-controls="menuList" class="nav__MobileBtn"><span><span></span></span></button>
+      </nav>
+    </div>
+  </header>
+
+
+  <main id="maincontent">
+    <div class="pageWidth">
+      <h1 itemprop="name">Real World HTTP 第2版</h1>
+      <span itemprop="publisher" content="オライリー・ジャパン"></span>
+      <div class="contributers">
+        <span itemprop="author">渋川 よしき　著</span>
+      </div>
+
+      <section class="detail"
+               itemscope itemtype="http://schema.org/Book">
+        <div class="detail-cover">
+          <img src="https://www.oreilly.co.jp/books/images/picture_large978-4-87311-903-8.jpeg"
+               class="cover-photo"
+               alt="[cover photo]" />
+        </div>
+
+        <dl class="item-props">
+          <dt>TOPICS</dt>
+          <dd>
+            
+            <a href="/books/inet/">Web</a>
+            
+          </dd>
+
+          <dt>発行年月日</dt>
+          
+          <dd itemprop="datePublished" content="2020-04-21">2020年04月</dd>
+          
+
+          
+          <dt>PRINT LENGTH</dt>
+          <dd itemprop="numberOfPages">496</dd>
+          
+
+          <dt>ISBN</dt>
+          <dd itemprop="isbn">978-4-87311-903-8</dd>
+
+          
+
+          <dt>FORMAT</dt>
+          <dd>
+            Print PDF  EPUB 
+
+            <div class="buying-options">
+              
+              <div class="option-item">
+                <div class="option-name">Ebook</div>
+                <div>
+                  3,168円
+                </div>
+                <a href="/ebook/cart?id=978-4-87311-903-8&mode=add"
+                   class="update-button secondary-button">
+                  Ebookを購入する
+                </a>
+              </div>
+              
+
+              
+              <div class="option-item">
+                <div class="option-name">Print</div>
+                <div>3,960円</div>
+                <form method="post" action="/app/cart">
+                  <button class="update-button secondary-button">書籍を購入する</button>
+                  <input type="hidden" name="id" value="978-4-87311-903-8" />
+                  <input type="hidden" name="mode" value="add" />
+                </form>
+              </div>
+              
+            </div>
+          </dd>
+        </dl>
+
+        <div id="detail" class="content">
+          <p itemprop="description">本書はHTTPに関する技術的な内容を一冊にまとめることを目的とした書籍です。HTTPが進化する道筋をたどりながら、ブラウザが内部で行っていること、サーバーとのやりとりの内容などについて、プロトコルの実例や実際の使用例などを交えながら紹介しています。GoやJavaScriptによるコード例によって、単純なHTTPアクセス、フォームの送信、キャッシュやクッキーのコントロール、Keep-Alive、SSL/TLS、プロトコルアップグレード、サーバープッシュ、Server-Sent Events、WebSocketなどの動作を理解します。<br />
+第2版ではHTTP/3の規格化など、初版の発行後に起きたウェブ技術への変化にともなう内容のアップデートに加え、DNSやCDN、またウェブアプリケーションの基礎など、ウェブ技術を扱うときに知っておきたい周辺技術に関する新章も追加しました。本書は、幅広く複雑なHTTPとウェブ技術に関する知識を整理するのに役立ち、また、さまざまな新しい技術をキャッチアップする一助となるでしょう。</p>
+        </div>
+
+        
+
+        
+        <h2 class="collapsible">正誤表</h2>
+        <section>
+          <p>ここで紹介する正誤表には、書籍発行後に気づいた誤植や更新された情報を掲載しています。以下のリストに記載の年月は、正誤表を作成し、増刷書籍を印刷した月です。お手持ちの書籍では、すでに修正が施されている場合がありますので、書籍最終ページの奥付でお手持ちの書籍の刷版、刷り年月日をご確認の上、ご利用ください。</p>
+          
+          <h3>第1刷の正誤表（第2版で修正済み）</h3>
+          <div class="errata">
+            <div class="section" id="x-11">
+    <h4>xページ 11行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>Node.jsの``http``モジュール</dd>
+    <dt>正：</dt>
+    <dd>Node.jsのhttpモジュール</dd>
+    </dl>
+    </div>
+    <div class="section" id="id2">
+    <h4>10ページ 5行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>インターネットの前身であるARPAネットでも</dd>
+    <dt>正；</dt>
+    <dd>インターネットの前身であるARPANETでも</dd>
+    </dl>
+    </div>
+    <div class="section" id="id3">
+    <h4>13ページ 8行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>Go言語のnet/httpパッケージは-（ハイフン）区切りで単語が並んでいるものとみなし</dd>
+    <dt>正；</dt>
+    <dd>Go言語のnet/httpパッケージは、フィールド名を-（ハイフン）区切りで単語が並べられたものとみなし</dd>
+    </dl>
+    </div>
+    <div class="section" id="id4">
+    <h4>37ページ 下から8行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>これは境界文字列です。各プラウザ実装が</dd>
+    <dt>正：</dt>
+    <dd>これは境界文字列です。各ブラウザ実装が</dd>
+    </dl>
+    </div>
+    <div class="section" id="id5">
+    <h4>54ページ 下から14行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>importセクションに追加したgithub.com/k0kibun/ppは</dd>
+    <dt>正：</dt>
+    <dd>importセクションに追加したgithub.com/k0kubun/ppは</dd>
+    </dl>
+    <p>※3行下も同様</p>
+    </div>
+    <div class="section" id="note1">
+    <h4>65ページ Noteの1行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>キャッシュを回避して読み見込ませたい時に、</dd>
+    <dt>正：</dt>
+    <dd>キャッシュを回避して読み込ませたい時に、</dd>
+    </dl>
+    </div>
+    <div class="section" id="id6">
+    <h4>67ページ 下から4行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>必要以上に聞いてしまって</dd>
+    <dt>正：</dt>
+    <dd>必要以上に効いてしまって</dd>
+    </dl>
+    </div>
+    <div class="section" id="id7">
+    <h4>72ページ 表2-3キャプション</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>Nonemetaタグに書けるディレクティブ</dd>
+    <dt>正：</dt>
+    <dd>metaタグに書けるディレクティブ</dd>
+    </dl>
+    </div>
+    <div class="section" id="id8">
+    <h4>74ページ 10行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>サイトマップはrobots.txtのように</dd>
+    <dt>正：</dt>
+    <dd>サイトマップは以下のように</dd>
+    </dl>
+    </div>
+    <div class="section" id="id9">
+    <h4>75ページ 2行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>FireFoxの先祖のブラウザのMozillのようで</dd>
+    <dt>正：</dt>
+    <dd>FireFoxの先祖のブラウザのMozillaのようで</dd>
+    </dl>
+    </div>
+    <div class="section" id="id10">
+    <h4>110ページ 6行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>1.1と1.2のサポートを外して行くことを発表しています</dd>
+    <dt>正：</dt>
+    <dd>1.0と1.1のサポートを外して行くことを発表しています</dd>
+    </dl>
+    </div>
+    <div class="section" id="id11">
+    <h4>128ページ 下から10行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>したことを公式Tiwtterがツイートしています</dd>
+    <dt>正：</dt>
+    <dd>したことを公式Twitterがツイートしています</dd>
+    </dl>
+    </div>
+    <div class="section" id="id12">
+    <h4>181ページ 10行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>5.8.9　認証システムの構成</dd>
+    <dt>正：</dt>
+    <dd>5.8.9　実サービスにおける認証システム対応の落とし穴</dd>
+    </dl>
+    </div>
+    <div class="section" id="id13">
+    <h4>211ページ 1行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>それぞれ、接続状態のステートマシンが定義されており</dd>
+    <dt>正：</dt>
+    <dd>それぞれ図7-1、7-2のように接続状態のステートマシンが定義されており</dd>
+    </dl>
+    </div>
+    <div class="section" id="id14">
+    <h4>213ページ 表7-1ヘッダー行</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>種類　データ　オプショナルデータ　説明</dd>
+    <dt>正：</dt>
+    <dd>種類　送信内容　オプションの送信内容　説明</dd>
+    </dl>
+    </div>
+    <div class="section" id="id15">
+    <h4>213ページ 表7-1</h4>
+    <p>最終行の通信内容は「オプションのみ」</p>
+    </div>
+    <h4>219ページ 15行目</h4>
+    <div class="section" id="footnote">
+    <dl>
+    <dt>誤：</dt>
+    <dd>またH2O[#]にも</dd>
+    <dt>正：</dt>
+    <dd>またH2O<sup>†10</sup> にも</dd>
+    </dl>
+
+    <p>また、これに伴って以降の注番号が1つずつずれてしまっております。この問題を修正した7章全体のPDFを[<a href="/pub/9784873119038/rwhttp-2e-ch07.pdf">こちら</a>]に、紙面に対応した脚注のリストを[<a href="/pub/9784873119038/rwhttp-2e-ch07-annotations.pdf">こちら</a>]に置いておりますので、併せてご参照ください。ご迷惑をおかけして申し訳ありません。</p>
+</div>
+
+    <div class="section" id="ietfquic">
+    <h4>224ページ 図版、IETF版QUIC</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>HTTP/2 over QUIC</dd>
+    <dt>正:</dt>
+    <dd>HTTP over QUIC</dd>
+    </dl>
+    </div>
+    <div class="section" id="p257-8-2json-ld">
+    <h4>P257 表8-2、JSON-LDの行</h4>
+    <dl class="docutils">
+    <dt>正：</dt>
+    <dd>「バリエーション」の列にある「JSONで記述し、&lt;script&gt;タグで埋め込む」は「説明」の列の内容です</dd>
+    </dl>
+    </div>
+    <div class="section" id="id16">
+    <h4>282ページ 下から12行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>2018年にISO化されたのがCMCFです</dd>
+    <dt>正：</dt>
+    <dd>2018年にISO化されたのがCMAFです</dd>
+    </dl>
+    <p>※3行下も同様</p>
+    </div>
+    <div class="section" id="id17">
+    <h4>304ページ 下から12行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>maltipart/mixed</dd>
+    <dt>正：</dt>
+    <dd>multipart/mixed</dd>
+    </dl>
+    </div>
+    <div class="section" id="id18">
+    <h4>305ページ 下から9行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>サービスもSLOが100%とは保証していないため</dd>
+    <dt>正：</dt>
+    <dd>サービスもSLAが100%とは保証していないため</dd>
+    </dl>
+    </div>
+    <div class="section" id="put">
+    <h4>307ページ 表10-1、PUTの行の説明</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>データの更新（リソースがすでにある場合</dd>
+    <dt>正：</dt>
+    <dd>データの更新（リソースがすでにある場合）</dd>
+    </dl>
+    </div>
+    <div class="section" id="id19">
+    <h4>326ページ リスト11-1キャプション</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>Fetch APIを使うGoのコード</dd>
+    <dt>正：</dt>
+    <dd>Fetch APIを使うJavaScriptのコード</dd>
+    </dl>
+    </div>
+    <div class="section" id="id20">
+    <h4>337ページ リスト11-13キャプション</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>WebSocketにょる接続と送信</dd>
+    <dt>正：</dt>
+    <dd>WebSocketによる接続と送信</dd>
+    </dl>
+    </div>
+    <div class="section" id="id21">
+    <h4>339ページ 下から2行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>ウェブサーバー、もしくはサーバーと読んでいます。</dd>
+    <dt>正：</dt>
+    <dd>ウェブサーバー、もしくはサーバーと呼んでいます。</dd>
+    </dl>
+    </div>
+    <div class="section" id="id22">
+    <h4>340ページ 6行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>ウェブを構成する4つの箱</dd>
+    <dt>正：</dt>
+    <dd>HTTPを構成する4つの箱</dd>
+    </dl>
+    </div>
+    <div class="section" id="id23">
+    <h4>354ページ 6行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>ホットリロード用のコードを埋め込みます。</dd>
+    <dt>正：</dt>
+    <dd>自動的にリロードするためのコードを埋め込みます。</dd>
+    </dl>
+    </div>
+    <div class="section" id="id24">
+    <h4>360ページ 下から11行目</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>決そうではありません。</dd>
+    <dt>正：</dt>
+    <dd>必ずしもそうではありません。</dd>
+    </dl>
+    </div>
+    <div class="section" id="id25">
+    <h4>410ページ 8行目：</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>サーバーからHTTPでの接続を要請したいときには</dd>
+    <dt>正：</dt>
+    <dd>サーバーからHTTPSでの接続を要請したいときには</dd>
+    </dl>
+    </div>
+    <div class="section" id="id26">
+    <h4>427ページ 冒頭（2か所）</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>（Internet Explorer用：本章末尾）</dd>
+    <dt>正：</dt>
+    <dd>（Internet Explorer用：付録A.3を参照）</dd>
+    </dl>
+    </div>
+    <div class="section" id="a-13strict-transport-security">
+    <h4>440ページ 表A-13、Strict-Transport-Securityの説明</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>説明</dd>
+    <dt>正：</dt>
+    <dd>サーバーからHTTPSでの接続を要請する</dd>
+    </dl>
+    </div>
+    <div class="section" id="a-3-1">
+    <h4>441ページ A.3.1タイトル</h4>
+    <dl class="docutils">
+    <dt>誤：</dt>
+    <dd>NoneX-Content-Security-Policyヘッダー</dd>
+    <dt>正：</dt>
+    <dd>X-Content-Security-Policyヘッダー</dd>
+    </dl>
+    <p>※次ページのA.3.2、A.3.3も同様</p>
+    </div>
+          </div>
+          
+          <h3>第2刷の正誤表</h3>
+          <div class="errata">
+            <div class="section" id="eratta-2e-rev2">
+<h4 class="subtitle" id="rev2-p27">27ページ 下から5行目</h4>
+
+<dl class="docutils">
+<dt>誤：</dt>
+<dd>パーセントエンコーディングは JavaScript であれば、<tt class="docutils literal">encodeURIComponent()</tt> 関数や <tt class="docutils literal">URLSearchParmas</tt> クラスで簡単に作れます。</dd>
+<dt>正：</dt>
+<dd>パーセントエンコーディングは JavaScript であれば、<tt class="docutils literal">encodeURIComponent()</tt> 関数や <tt class="docutils literal">URLSearchParams</tt> クラスで簡単に作れます。</dd>
+</dl>
+</div>
+
+          </div>
+          
+        </section>
+        
+
+        <h2 class="collapsible">目次</h2>
+        <section>
+          <div id="toc">
+            <pre>まえがき
+
+ 1章　HTTP/1.0の世界：基本となる4つの要素
+
+    1.1　HTTPの歴史
+        1.1.1　テストエコーサーバーの実行
+    1.2　HTTP/0.9でできることを試す
+    1.3　HTTP/0.9から1.0への道のり
+    1.4　HTTPの先祖（1）電子メール
+        1.4.1　ヘッダーの送信
+        1.4.2　ヘッダーの受信
+        1.4.3　MIMEタイプ
+        1.4.4　Content-Typeとセキュリティ
+        1.4.5　電子メールとの違い
+    1.5　HTTPの先祖（2）ニュースグループ
+        1.5.1　メソッド
+        1.5.2　ステータス
+    1.6　リダイレクト
+        1.6.1　POST送信したのに「GETメソッドは受け付けられない」エラー
+    1.7　URL（Uniform Resource Locators）
+        1.7.1　URLの構造
+        1.7.2　URLと国際化
+        1.7.3　正規URL
+        1.7.4　Protocol-Relative URL
+    1.8　ボディ
+        1.8.1　GETリクエスト時のボディ
+    1.9　　本章のまとめ
+
+ 2章　HTTP/1.0のセマンティクス：ブラウザの基本機能の裏側
+    2.1　シンプルなフォームの送信（x-www-form-urlencoded）
+    2.2　フォームを使ったファイルの送信（multipart/form-data）
+    2.3　フォームを利用したリダイレクト
+    2.4　コンテントネゴシエーション
+        2.4.1　ファイルの種類の決定
+        2.4.2　表示言語の決定
+        2.4.3　キャラクターセットの決定
+        2.4.4　圧縮による通信速度の向上
+    2.5　クッキー
+        2.5.1　クッキーの分類
+        2.5.2　クッキーの間違った使い方
+        2.5.3　クッキーに制約をあたえる
+        2.5.4　オリジン
+        2.5.5　SameSite属性
+    2.6　認証とセッション
+        2.6.1　BASIC認証とDigest認証
+        2.6.2　クッキーを使ったセッション管理
+        2.6.3　署名付きクッキーによるセッションデータの保存
+    2.7　プロキシ
+    2.8　キャッシュ
+        2.8.1　更新日時によるキャッシュ
+        2.8.2　Expiresヘッダー
+        2.8.3　Pragma: no-cache
+        2.8.4　確実にキャッシュしない条件
+        2.8.5　ETagの追加
+        2.8.6　Cache-Control
+        2.8.7　Vary
+    2.9　リファラー
+    2.10　検索エンジン向けのコンテンツのアクセス制御
+        2.10.1　robots.txt
+        2.10.2　robots.txtと裁判の判例
+        2.10.3　サイトマップ
+    2.11　ユーザーエージェント
+    2.12　本章のまとめ
+
+ 3章　Go言語によるHTTP/1.0クライアントの実装
+    3.1　Go言語を使う理由
+    3.2　Go言語のAPIの構成
+    3.3　本章で取り上げるレシピ
+    3.4　GETメソッドの送信と、ボディ、ステータス、ヘッダーの受信
+        3.4.1　io.Reader
+    3.5　GETメソッド+クエリーの送信
+    3.6　HEADメソッドでヘッダーを取得
+    3.7　x-www-form-urlencoded形式のPOSTメソッドの送信
+    3.8　POSTメソッドで任意のボディを送信
+    3.9　multipart/form-data形式でファイルの送信
+        3.9.1　送信するファイルに任意のMIMEタイプを設定する
+    3.10　クッキーの送受信
+    3.11　プロキシの利用
+    3.12　ファイルシステムへのアクセス
+    3.13　自由なメソッドの送信
+    3.14　ヘッダーの送信
+    3.15　タイムアウト
+    3.16　国際化ドメイン
+    3.17　本章のまとめ
+
+ 4章　HTTP/1.1のシンタックス：高速化と安全性を求めた拡張
+
+    4.1　Keep-Aliveによる通信の高速化
+        4.1.1　パイプライニング
+    4.2　TLS（トランスポート・レイヤー・セキュリティ）
+        4.2.1　ハッシュ関数
+        4.2.2　共通鍵暗号と公開鍵暗号とデジタル署名
+        4.2.3　鍵交換
+        4.2.4　共通鍵方式と公開鍵方式を使い分ける理由
+        4.2.5　TLSの通信手順
+        4.2.6　暗号強度
+        4.2.7　暗号スイート（Cipher Suite）
+        4.2.8　プロトコルの選択
+        4.2.9　TLSが守るもの
+        4.2.10　常時TLS時代
+    4.3　PUTメソッドとDELETEメソッドの標準化
+    4.4　OPTIONS、TRACE、CONNECTメソッドの追加
+        4.4.1　OPTIONS
+        4.4.2　TRACE（TRACK）
+        4.4.3　CONNECT
+    4.5　プロトコルのアップグレード
+        4.5.1　クライアント側からアップグレードを要請
+        4.5.2　サーバー側からアップグレードを要請
+        4.5.3　TLSへのアップグレードの問題点
+    4.6　バーチャルホストのサポート
+    4.7　チャンク
+        4.7.1　末尾へのヘッダーの追加
+    4.8　ボディ送信の確認
+    4.9　データURIスキーム
+    4.10　本章のまとめ
+
+ 5章　HTTP/1.1のセマンティクス：広がるHTTPの用途
+    5.1　ファイルをダウンロードした後でローカルに保存
+        5.1.1　ファイルを保存させるContent-Dispositionヘッダー
+        5.1.2　デフォルトファイル名に日本語を使う
+        5.1.3　ブラウザ内で表示
+    5.2　ダウンロードの中断、再開
+        5.2.1　複数範囲ダウンロード
+        5.2.2　並列ダウンロード
+    5.3　XMLHttpRequest
+        5.3.1　XMLHttpRequestの誕生
+        5.3.2　XMLHttpRequestとブラウザのHTTPリクエストの違い
+        5.3.3　Comet
+        5.3.4　XMLHttpRequestのセキュリティ
+    5.4　Geo-Location
+        5.4.1　クライアント自身が場所を得る方法
+        5.4.2　サーバーがクライアントの場所を推測する方法
+    5.5　X-Powered-Byヘッダー
+    5.6　リモートプロシージャコール（RPC）
+        5.6.1　XML-RPC
+        5.6.2　SOAP
+        5.6.3　JSON-RPC
+    5.7　WebDAV
+    5.8　ウェブサイト間で共通の認証・認可プラットフォーム
+        5.8.1　シングルサインオン
+        5.8.2　Kerberos認証
+        5.8.3　SAML（Security Assertion Markup Language）
+        5.8.4　OpenID
+        5.8.5　OpenSocial
+        5.8.6　OAuth
+        5.8.7　OpenID Connect
+        5.8.8　JWT（JSON Web Token）
+        5.8.9　認証システムの構成
+    5.9　本章のまとめ
+
+ 6章　Go言語によるHTTP1.1クライアントの実装
+    6.1　Keep-Alive
+    6.2　TLS
+        6.2.1　証明書の作成
+        6.2.2　HTTPSサーバーと証明書の登録
+        6.2.3　Go言語によるクライアントの実装
+        6.2.4　クライアント証明書
+    6.3　プロトコルのアップグレード
+        6.3.1　サーバー側のコード
+        6.3.2　クライアント側のコード
+    6.4　チャンク
+        6.4.1　サーバーからの送信
+        6.4.2　クライアントでの逐次受信（簡易版）
+        6.4.3　クライアントでの逐次受信（完全版）
+    6.5　リモートプロシージャコール（RPC）
+    6.6　本章のまとめ
+
+ 7章　HTTP/2、HTTP/3のシンタックス：プロトコルの再定義
+    7.1　HTTP/2、HTTP/3で変わらないこと
+    7.2　HTTP/2
+        7.2.1　SPDY
+        7.2.2　HTTP/2の改善点
+        7.2.3　ストリームによる通信の高速化
+        7.2.4　HTTP/2のアプリケーション層
+        7.2.5　フローコントロール
+        7.2.6　サーバープッシュ
+        7.2.7　HTTP/2とプリロードによるリソース取得の最適化
+        7.2.8　HPACKによるヘッダーの圧縮
+    7.3　HTTP/3
+        7.3.1　QUIC
+        7.3.2　HTTP/3への道
+        7.3.3　HTTP/3のレイヤー
+        7.3.4　HTTP Alternative Servicesによるアップグレード
+    7.4　新たなJavaScript用の通信API
+        7.4.1　Fetch API
+        7.4.2　Server-Sent Events
+        7.4.3　WebSocket
+    7.5　WebRTC（Web Real-Time Communication）
+        7.5.1　WebRTCのユースケース（1）
+        7.5.2　WebRTCのユースケース（2）
+        7.5.3　RFC以外のユースケース
+        7.5.4　RTCPeerConnection
+        7.5.5　メディアチャンネルと getUserMedia
+        7.5.6　RTCDataChannel
+    7.6　HTTPウェブプッシュ
+        7.6.1　ブラウザがプッシュサービスに購読を申し込む
+        7.6.2　アプリケーションサーバーがプッシュサービスにメッセージを投稿
+        7.6.3　ブラウザがプッシュメッセージを受信
+        7.6.4　緊急度の設定
+    7.7　本章のまとめ
+
+ 8章　HTTP/2のセマンティクス：新しいユースケース
+    8.1　レスポンシブデザイン
+    8.2　セマンティックウェブ
+        8.2.1　RDF（Resource Description Framework）
+        8.2.2　ダブリンコア
+        8.2.3　RSS
+        8.2.4　マイクロフォーマット
+        8.2.5　マイクロデータ
+        8.2.6　RDFの逆襲
+        8.2.7　RDF系以外のデータ
+    8.3　オープングラフプロトコル
+    8.4　QRコード
+        8.4.1　QRコードとスキーム
+    8.5　AMP（Accelerated Mobile Pages）
+    8.6　モバイルアプリケーションにより多様化するブラウズ環境
+        8.6.1　iOSのDeepLink
+        8.6.2　AndroidのDeepLink
+        8.6.3　DeepLinkの例：Twitterのスマートフォンアプリを起動
+    8.7　HTTPライブストリーミング（HLS）による動画のストリーミング再生
+        8.7.1　HLSのビデオタグ
+        8.7.2　マスターの.m3u8ファイル
+        8.7.3　字幕の.m3u8ファイル
+        8.7.4　動画ファイル
+        8.7.5　HLSのメリットとデメリット
+        8.7.6　HLS前後の歴史
+    8.8　MPEG-DASHによる動画ストリーミング再生
+        8.8.1　MPEG-DASHとHLSの再生方法の違い
+        8.8.2　Media Presentation Description（MPD）ファイルの構造
+    8.9　CMAF（Common Media Application Format）
+    8.10　本章のまとめ
+
+ 9章　Go言語によるHTTP/2、HTML 5のプロトコルの実装
+    9.1　HTTP/2
+    9.2　HTTP/2のサーバープッシュ
+        9.2.1　HTTP/2落穂拾い
+    9.3　Server-Sent Events
+        9.3.1　サーバーの実装
+        9.3.2　クライアントの実装
+    9.4　WebSocket
+        9.4.1　サーバーの実装
+        9.4.2　クライアントの実装
+        9.4.3　ルームの実装
+    9.5　本章のまとめ
+
+ 10章　クライアント視点で見るRESTful API
+    10.1　RESTful API
+        10.1.1　REST APIとRPCとの違い
+        10.1.2　Web APIとトランザクション
+        10.1.3　HATEOAS
+        10.1.4　RESTfulとREST-ish
+    10.2　メソッド
+        10.2.1　べき等のGETをべき等ではない操作に使ってはいけない
+    10.3　ステータス
+    10.4　ボディ
+    10.5　実際のREST APIを見てみる（PAY.jpの例）
+    10.6　実際のREST APIを見てみる（GitHubの例）
+        10.6.1　GitHubの認可
+        10.6.2　情報取得のAPIアクセス
+        10.6.3　情報更新のAPIアクセス
+    10.7　REST APIにアクセスする時の細かいトピック
+        10.7.1　タイムアウト
+        10.7.2　アクセス数制限
+    10.8　本章のまとめ
+
+ 11章　JavaScriptによるブラウザからの動的なHTTPリクエスト
+    11.1　ブラウザのHTTPとライフサイクル
+    11.2　XMLHttpRequest
+        11.2.1　さまざまなデータフォーマットを扱う
+    11.3　Fetch API
+        11.3.1　Fetch APIの基本
+        11.3.2　Fetchのオプション
+        11.3.3　クエリーパラメータの作成と解析
+        11.3.4　ボディの送信
+        11.3.5　Fetch APIにしかできないこと
+        11.3.6　Fetch APIを使うときのよくある間違い
+        11.3.7　ブラウザ以外のJavaScript環境からFetch
+    11.4　JavaScriptからブラウザのリロードをともなうHTTPアクセス
+    11.5　ファイルのダウンロード
+        11.5.1　動的にコンテンツを作成してダウンロード
+    11.6　Server-Sent Events
+    11.7　WebSocket
+    11.8　本章のまとめ
+
+ 12章　ウェブアプリケーションの基礎
+    12.1　用語の整理
+    12.2　基本的なフロー
+    12.3　ウェブアプリケーションのリクエストのライフサイクル
+        12.3.1　HTTPリクエスト
+        12.3.2　セッション
+    12.4　ウェブアプリケーションの動作のパターン
+        12.4.1　第1世代: サーバーサイドレンダリング
+        12.4.2　第2世代: Ajax
+        12.4.3　第3世代: シングルページアプリケーション
+        12.4.4　第3.5世代: シングルページアプリケーション+サーバーサイドレンダリング
+    12.5　インフラ構成
+        12.5.1　開発環境
+        12.5.2　本番環境の基本構成
+    12.6　その他のインフラ形態
+        12.6.1　PaaS（Platform as a Service）
+        12.6.2　サーバーレス
+        12.6.3　マイクロサービス
+    12.7　ウェブアプリケーション内部の階層構造
+    12.8　ウェブアプリケーション構成要素の詳細な分類
+    12.9　ウェブAPIの設計 -箱の使い分け
+    12.10　今後はあまり使われなくなる技術
+        12.10.1　CGI
+        12.10.2　リッチ・インターネット・アプリケーション
+    12.11　本章のまとめ
+
+ 13章　クラウド時代のHTTP：ウェブを強くするさまざまな技術
+    13.1　より大規模なウェブシステムの構成
+    13.2　DNS（Domain Name Service）
+        13.2.1　DNSの事前問い合わせ
+        13.2.2　DNSサーバーのキャッシュ
+        13.2.3　DNSクライアントのキャッシュ
+        13.2.4　DNSを使ったロードバランス
+        13.2.5　DNSを使ったトラフィックの誘導
+        13.2.6　SRVレコードを使ったサービスディスカバリー
+    13.3　リバースプロキシ
+        13.3.1　Go言語によるリバースプロキシの実装
+    13.4　CDN（Content Delivery Network）
+        13.4.1　通信そのものを高速化＆安定化
+        13.4.2　ユーザーに近い高機能なプロキシサーバー
+        13.4.3　CDNの注意点
+    13.5　ロードバランサー
+        13.5.1　接続ドレイン
+    13.6　APIゲートウェイ
+    13.7　ヘルスチェック
+        13.7.1　Liveness Prove
+        13.7.2　Readiness Prove
+    13.8　バーチャル・プライベート・クラウド（VPC）
+    13.9　マイクロサービスと認証
+    13.10　分散トレーシング
+        13.10.1　トレース情報を子タスクに伝搬するHTTPヘッダー
+        13.10.2　サーバー内部の時間情報をブラウザに伝搬するHTTPヘッダー
+    13.11　その他の技術要素
+    13.12　本章のまとめ
+
+ 14章　セキュリティ：ブラウザを守るHTTPの機能
+    14.1　従来型の攻撃
+    14.2　ブラウザを狙う攻撃の特徴
+        14.2.1　セッショントークンorクッキー
+    14.3　クロスサイトスクリプティング（XSS）
+        14.3.1　漏洩を防ぐためのクッキーの設定
+        14.3.2　Content-Security-Policyヘッダー
+        14.3.3　Content-Security-PolicyとJavaScript製テンプレートエンジン
+        14.3.4　Mixed Contentへの対応
+        14.3.5　クロスオリジンリソースシェアリング（CORS）
+    14.4　中間者攻撃（MITM攻撃）
+        14.4.1　HTTP Strict Transport Security（HSTS）
+    14.5　セッションハイジャッキング
+        14.5.1　古のセッション管理とセッション固定化攻撃
+        14.5.2　クッキーインジェクション
+    14.6　クロスサイトリクエストフォージェリ（CSRF）
+        14.6.1　CSRF対策トークン
+        14.6.2　SameSite属性
+    14.7　クリックジャッキング
+    14.8　リスト型アカウントハッキング
+        14.8.1　パスワードのストレッチ：平文でのパスワード保存をしない
+        14.8.2　各種パスワード保管時に使うハッシュ関数
+        14.8.3　パスワードのログのマスク化
+        14.8.4　多要素認証（MFA）
+        14.8.5　タイムベースワンタイムパスワードアルゴリズム（TOTP）
+        14.8.6　WebAuthn（Web Authentication）
+        14.8.7　ログインをユーザーに通知
+    14.9　脆弱性のあるコードのインジェクション
+    14.10　ウェブアプリケーションのためのセキュリティガイドライン
+    14.11　ウェブの広告とセキュリティ
+        14.11.1　サードパーティクッキー
+        14.11.2　クッキー以外の代替手段
+        14.11.3　Google Analytics
+        14.11.4　ユーザーを特定せずに推定する（Finger Print）
+    14.12　本章のまとめ
+
+付録
+    A.1　ステータスコード一覧
+        A.1.1　100番台（情報）
+        A.1.2　200番台（成功）
+        A.1.3　300番台（リダイレクト）
+        A.1.4　400番台（クライアントエラー）
+        A.1.5　500番台（サーバーエラー）
+    A.2　ヘッダーフィールド一覧
+    A.3　Internet ExplorerとContent-Security-Policyヘッダー
+        A.3.1　X-Content-Security-Policyヘッダー
+        A.3.2　X-XSS-Protectionヘッダー
+        A.3.3　X-Frame-Optionsヘッダー
+    A.4　Go言語のJSONのパース
+        A.4.1　Go言語の構造体タグを使ったJSONのパース
+        A.4.2　省略されたか、ゼロ値かを判定する
+        A.4.3　特別な型変換を行いたい場合
+    A.5　JSON周りの応用トピック
+        A.5.1　出力時に出力を加工する
+        A.5.2　状況によって型が変わるJSONのパース
+        A.5.3　汎用のデータ型への変換
+        A.5.4　JSONスキーマ
+
+あとがき
+索引
+</pre>
+          </div>
+        </section>
+      </section>
+
+
+      
+      <div class="related-items">
+        <div class="sectionRow__Heading">
+          <h3>関連書籍</h3>
+        </div>
+        
+
+        <div class="sectionRow__Content">
+          <div class="sectionRow__BestLarge" id="bestEbooks">
+            
+            
+            <div class="sectionRow__Best" id="bestEbook1">
+              <a class="sectionRow__BestCover" href="/books/9784873116860/">
+                <img src="https://www.oreilly.co.jp/books/images/picture_large978-4-87311-686-0.jpeg" alt="Web API: The Good Parts">
+              </a>
+            </div>
+            
+            
+            <div class="sectionRow__Best hidden" id="bestEbook2">
+              <a class="sectionRow__BestCover" href="/books/9784873118642/">
+                <img src="https://www.oreilly.co.jp/books/images/picture_large978-4-87311-864-2.jpeg" alt="入門 監視">
+              </a>
+            </div>
+            
+            
+            <div class="sectionRow__Best hidden" id="bestEbook3">
+              <a class="sectionRow__BestCover" href="/books/9784873116761/">
+                <img src="https://www.oreilly.co.jp/books/images/picture_large978-4-87311-676-1.jpeg" alt="ハイパフォーマンス ブラウザネットワーキング">
+              </a>
+            </div>
+            
+            
+            <div class="sectionRow__Best hidden" id="bestEbook4">
+              <a class="sectionRow__BestCover" href="/books/9784873113616/">
+                <img src="https://www.oreilly.co.jp/books/images/picture_large978-4-87311-361-6.jpeg" alt="ハイパフォーマンスWebサイト">
+              </a>
+            </div>
+            
+            
+          </div>
+
+          <div class="sectionRow__BestThumbnails" id="bestEbookThumbnails">
+            
+            
+            <button class="sectionRow__bestBookThumbnailsItem" data-for="bestEbook1" aria-selected="true" title="Web API: The Good Parts">
+              <img src="https://www.oreilly.co.jp/books/images/picture_large978-4-87311-686-0.jpeg" alt="94342526081280">
+            </button>
+            
+            
+            <button class="sectionRow__bestBookThumbnailsItem" data-for="bestEbook2"  title="入門 監視">
+              <img src="https://www.oreilly.co.jp/books/images/picture_large978-4-87311-864-2.jpeg" alt="94342530877304">
+            </button>
+            
+            
+            <button class="sectionRow__bestBookThumbnailsItem" data-for="bestEbook3"  title="ハイパフォーマンス ブラウザネットワーキング">
+              <img src="https://www.oreilly.co.jp/books/images/picture_large978-4-87311-676-1.jpeg" alt="94342531130248">
+            </button>
+            
+            
+            <button class="sectionRow__bestBookThumbnailsItem" data-for="bestEbook4"  title="ハイパフォーマンスWebサイト">
+              <img src="https://www.oreilly.co.jp/books/images/picture_large978-4-87311-361-6.jpeg" alt="94342531172232">
+            </button>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer__FooterSection">
+    <div class="pageWidth">
+      <div class="footer__FooterTop">
+        <div class="footer__List">
+          <h3><a href="https://www.oreilly.co.jp/company/">About</a></h3>
+          <a href="https://www.oreilly.co.jp/company/">会社概要</a>
+          <a href="https://www.oreilly.co.jp/orj/privacypolicy.shtml">個人情報について</a>
+          <a href="http://www.oreilly.com/">O’Reilly Media</a>
+          <a href="http://makezine.jp/">Make: Japan</a>
+          <a href="http://makezine.jp/events">Maker Faire Tokyo</a>
+        </div>
+
+        <div class="footer__List">
+          <h3><a href="https://www.oreilly.co.jp/company/">Support</a></h3>
+          <a href="https://www.oreilly.co.jp/feedback/">Contact us</a>
+          <a href="https://www.oreilly.co.jp/bookclub/">Bookclub</a>
+          <a href="https://www.oreilly.co.jp/order/">書籍注文</a>
+        </div>
+
+        <div class="footer__Apps">
+          <h3>Download the O’Reilly app</h3>
+
+          <p>Take O’Reilly with you and learn anywhere, anytime on your phone <span class="nowrap">and tablet.</span></p>
+
+          <div class="footer__DownloadLinks">
+            <a href="https://itunes.apple.com/us/app/safari-to-go/id881697395"><img src="https://cdn.oreillystatic.com/oreilly/images/app-store-logo.png" alt="Apple app store"></a>
+
+            <a href="https://play.google.com/store/apps/details?id=com.safariflow.queue"><img src="https://cdn.oreillystatic.com/oreilly/images/google-play-logo.png" alt="Google play store"></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__FooterBase">
+        <a aria-current="page" class="footer__Logo" title="Go to home page" href="/"><img src="/assets/images/logo_oreilly_japan.svg" alt="O'Reilly logo"></a>
+        <p>© 2022, O’Reilly Japan, Inc. oreilly.co.jpに掲載されているすべてのトレードマークおよび登録商標は、それぞれの所有者に帰属します。</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/scripts/cookies-policy.6d8dcbae.js"></script>
+  <script>
+let coll = document.getElementsByClassName('collapsible');
+for (let i = 0; i < coll.length; i++) {
+  let button = document.createElement('button');
+  button.setAttribute('type', 'button');
+  button.setAttribute('class', 'collapsible');
+  button.textContent = coll[i].textContent;
+  coll[i].replaceWith(button)
+
+  coll[i].addEventListener('click', function() {
+    this.classList.toggle('collapsible-active');
+    let content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + 'px';
+    }
+  });
+}
+  </script>
+  <script src="/assets/scripts/scripts.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-6009404-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-6009404-1');
+  </script>
+</body>
+</html>

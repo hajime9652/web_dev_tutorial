@@ -1,0 +1,12 @@
+POST http://localhost:8888 HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+title="the title"
+author="the author"
+
+# curl --request POST \
+#   --url http://localhost:8888 \
+#   --header 'content-type: application/x-www-form-urlencoded' \
+#   --header 'user-agent: vscode-restclient' \
+#   --data title="the title"
+#   --data author="the author"

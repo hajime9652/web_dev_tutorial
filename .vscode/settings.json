@@ -1,0 +1,6 @@
+{
+    "python.defaultInterpreterPath": "backend/env/bin/python3",
+    "python.venvFolders": [
+        "backend/env",
+      ]
+}

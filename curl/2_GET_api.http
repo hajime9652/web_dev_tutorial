@@ -1,0 +1,16 @@
+# APIへのGETリクエスト
+
+# idで特定のデータを取得する
+GET https://qiita.com/api/v2/items/a596879d560479c90297 HTTP/1.1
+
+# curl --request GET \
+#   --url https://qiita.com/api/v2/items/a596879d560479c90297 \
+#   --header 'user-agent: vscode-restclient'
+
+
+# データのリストを取得する
+# GET https://qiita.com/api/v2/items HTTP/1.1
+
+# curl --request GET \
+#   --url https://qiita.com/api/v2/items \
+#   --header 'user-agent: vscode-restclient'
